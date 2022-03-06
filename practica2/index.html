@@ -16,7 +16,13 @@
     <div class="container-fluid">
         <div class="row m-5">
             <div class="col-12">
-                <button>Obtiene datos del navegador</button>
+                <button onclick="obtieneDatos()" class="text-center btn btn-primary">Obtiene datos del navegador</button>
+                <ul class="m-5" id="navegador">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -27,10 +33,10 @@
         var datos = navegador.getElementsByTagName("li")
 
         function obtieneDatos() {
-            dato[0].innerHTML = "El nombre del navegador es: " + navigator.appCodeName
-            dato[1].innerHTML = "La version del navegador es: " + navigator.appVersion
-            dato[2].innerHTML = "La version del navegador es: " + navigator.onLine
-            dato[3].innerHTML = "La version del navegador es: " + navigator.platform
+            datos[0].innerHTML = "El nombre del navegador es: " + navigator.appCodeName
+            datos[1].innerHTML = "La version del navegador es: " + navigator.appVersion
+            datos[2].innerHTML = "El estatus del internet es: " + navigator.onLine
+            datos[3].innerHTML = "Plataforma: " + navigator.platform
         }
     </script>
 

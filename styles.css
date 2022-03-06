@@ -1,0 +1,19 @@
+.table{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+h1{
+    color: #fff;
+}
+
+h4{
+    color: #fff;
+}
+
+body{
+    background-image: url(./mapa.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}

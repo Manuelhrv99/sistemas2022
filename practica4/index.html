@@ -7,7 +7,7 @@
     <title>Practica 4</title>
 </head>
 <body>
-    <button onclick="obtieneUbicacion()">Obtener ubicacion</button>
+    <button onclick="getLocation()">Obtener ubicacion</button>
 
     <div id="mapa">
         <img id="imagenMapa" src="" alt="Imagen de mapa">
@@ -18,7 +18,7 @@
     <script>
         var mapa = document.getElementById("mapa");
 
-        function obtieneUbicacion() {
+        function getLocation() {
             if (navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(muestraPosicion);
             }

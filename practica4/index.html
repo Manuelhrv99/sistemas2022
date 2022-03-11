@@ -7,6 +7,34 @@
     <title>Practica 4</title>
 </head>
 <body>
-    
+    <button onclick="obtieneUbicacion()">Obtener ubicacion</button>
+
+    <div id="mapa">
+        <img id="imagenMapa" src="" alt="Imagen de mapa">
+    </div>
+
+    <p id="alerta"></p>
+
+    <script>
+        var mapa = document.getElementById("mapa");
+
+        function getLocation() {
+            if (navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(muestraPosicion);
+            }
+            else{
+                var alerta = document.getElementById("alerta");
+                alerta.innerHTML = "El navegador no dispone de geolocalizacion"
+            }
+        }
+
+        function muestraPosicion(posicion) {
+            var coordenadas = posicion.coords.latitude + "," + posicion.coords.longitude;
+
+            var imagenMapa = document.getElementById("imagenMapa");
+
+            imagenMapa.src = "http://maps.googleapis.com/maps/api/staticmap?center" + coordenadas + "&zoom=18&size=800x800&key=AIzaSyCMrQgga-C5zCuZLTVk2MPVzX7naqKZXZU";
+        }
+    </script> 
 </body>
 </html>

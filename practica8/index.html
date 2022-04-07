@@ -23,7 +23,7 @@
     <form>
         <div class="container-fluid">
             <div class="container">
-                <div class="row">
+                <div class="row" style="margin-top: 50px;">
                     <div class="col-12 col-md-6 text-center">
                         <h1>Google Maps Idiomas</h1>
                     </div>
@@ -58,7 +58,7 @@
         const idioma = urlParams.get('idioma')
 
         var script = document.createElement('script')
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCMrQgga-C5zCuZLTVk2MPVzX7naqKZXZU&callback=iniciaMapa&languaje=' + idioma
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCMrQgga-C5zCuZLTVk2MPVzX7naqKZXZU&callback=iniciaMapa&language=' + idioma
 
         document.head.appendChild(script)
         var iniciaMapa = () => {

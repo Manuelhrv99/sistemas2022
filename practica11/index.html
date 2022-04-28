@@ -146,12 +146,21 @@
                 center: coordenadas,
                 zoom: 12,
                 restriction: {
-                    latlngBounds: limites,
+                    latLngBounds: limites,
                     strictBounds: false
                 }
             }
 
             var mapa6 = new google.maps.Map(document.getElementById("mapa6"), propiedades6)
+
+            var propiedades7 = {
+                center: coordenadas,
+                zoom: 19,
+                mapTypeID: 'satellite'
+            }
+
+            var mapa7 = new google.maps.Map(document.getElementById("mapa7"), propiedades7)
+            mapa7.setTilt(45)
         }
 
     </script>

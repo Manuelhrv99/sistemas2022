@@ -91,17 +91,13 @@
                 position: coordenadas,
                 map: mapa2
             })
-            marker2.addListener('center_changed', function(){
+            mapa2.addListener('center_changed', function(){
                 window.setTimeout(function(){
                     mapa2.panTo(marker2.getPosition())
                 }, 3000)
             })
 
             var mapa3 = new google.maps.Map(document.getElementById("mapa3"), propiedades3)
-            var marker3 = new google.maps.Marker({
-                position: coordenadas,
-                map: mapa3
-            })
             marker3.addListener('zoom_changed', function(){
                 var infoWindow = new google.maps.InfoWindow({
                     content: 'Cambia el zoom',

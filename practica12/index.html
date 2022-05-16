@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,25 +11,34 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <style>
-        body{
+        body {
             margin: 0px;
             padding: 0px
         }
 
-        #mapa1, #mapa2, #mapa3, #mapa4, #mapa5, #mapa6, #mapa7{
+        #mapa1,
+        #mapa2,
+        #mapa3,
+        #mapa4,
+        #mapa5,
+        #mapa6,
+        #mapa7 {
             width: 100%;
             height: 340px;
         }
 
-        p{
+        p {
             text-align: center;
         }
     </style>
 
 </head>
+
 <body>
 
-    <div class="container"><h1>Controles de mapa</h1></div>
+    <div class="container">
+        <h1>Eventos en mapa</h1>
+    </div>
 
     <div class="container-fluid">
         <div class="container">
@@ -45,12 +55,12 @@
 
                 <div class="col-6">
                     <div id="mapa3" class="bg-light"></div>
-                    <p></p>
+                    <p>Obtiene nivel de zoom</p>
                 </div>
 
                 <div class="col-6">
                     <div id="mapa4" class="bg-light"></div>
-                    <p>Mapa con controlOptions</p>
+                    <p>Coloca marcador y mueve</p>
                 </div>
 
                 <div class="col-6">
@@ -61,6 +71,7 @@
                 <div class="col-6">
                     <div id="mapa6" class="bg-light"></div>
                     <p>addDomListener</p>
+                    <button id="btnCentrar" class="btn btn-primary">Centrar</button>
                 </div>
             </div>
         </div>
@@ -69,7 +80,7 @@
     <script>
 
         function iniciaMapa() {
-            var coordenadas = {lat: 21.152639, lng: -101.711598}
+            var coordenadas = { lat: 21.152639, lng: -101.711598 }
 
             var propiedades = {
                 center: coordenadas,
@@ -81,7 +92,7 @@
                 position: coordenadas,
                 map: mapa1
             })
-            marker.addListener('click', function(){
+            marker.addListener('click', function () {
                 mapa1.setZoom(8)
                 mapa1.setCenter(marker.getPosition())
             })
@@ -91,14 +102,14 @@
                 position: coordenadas,
                 map: mapa2
             })
-            mapa2.addListener('center_changed', function(){
-                window.setTimeout(function(){
+            mapa2.addListener('center_changed', function () {
+                window.setTimeout(function () {
                     mapa2.panTo(marker2.getPosition())
                 }, 3000)
             })
 
             var mapa3 = new google.maps.Map(document.getElementById("mapa3"), propiedades)
-            marker3.addListener('zoom_changed', function(){
+            mapa3.addListener('zoom_changed', function () {
                 var infoWindow = new google.maps.InfoWindow({
                     content: 'Cambia el zoom',
                     position: coordenadas
@@ -109,21 +120,44 @@
             })
 
             var mapa4 = new google.maps.Map(document.getElementById("mapa4"), propiedades)
-            mapa4.addListener('click', function(e){
+            mapa4.addListener('click', function (e) {
                 estableceMarcador(e.latLng)
             })
-            function estableceMarcador(latLng){
+            function estableceMarcador(latLng) {
                 var marker = new google.maps.Marker({
                     position: latLng,
                     map: mapa4
                 })
                 mapa4.panTo(latLng)
             }
+
+            var mapa5 = new google.maps.Map(document.getElementById('mapa5'), propiedades)
+            var infoWindow = new google.maps.InfoWindow({
+                content: 'Haz click para obtener las coordenadas',
+                position: coordenadas
+            })
+            infowindow.open(mapa5)
+            mapa5.addListener('click', function (evento) {
+                infowindow.close()
+                infowindow = new google.maps.InfoWindow({ position: evento.latLng })
+                infowindow.setContent(evento.latLng.toString())
+                infowindow.open(mapa5)
+            })
+
+            var mapa6 = new google.maps.Map(document.getElementById('mapa6'), propiedades)
+            google.maps.event.addDomListener(mapa6, 'click', function () {
+                window.alert('Se hizo click en el mapa')
+            })
+            var boton = document.getElementById('btnCentrar');
+            google.maps.event.addDomListener(boton, 'click', function () {
+                mapa6.panTo(coordenadas);
+            })
+
         }
 
     </script>
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -134,4 +168,5 @@
         async defer></script>
 
 </body>
+
 </html>

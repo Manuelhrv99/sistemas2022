@@ -11,9 +11,10 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <style>
+        html,
         body {
             margin: 0px;
-            padding: 0px
+            padding: 0px;
         }
 
         #mapa1,
@@ -21,8 +22,7 @@
         #mapa3,
         #mapa4,
         #mapa5,
-        #mapa6,
-        #mapa7 {
+        #mapa6 {
             width: 100%;
             height: 340px;
         }
@@ -78,8 +78,8 @@
     </div>
 
     <script>
-
         function iniciaMapa() {
+
             var coordenadas = { lat: 21.152639, lng: -101.711598 }
 
             var propiedades = {
@@ -87,40 +87,43 @@
                 zoom: 12
             }
 
-            var mapa1 = new google.maps.Map(document.getElementById("mapa1"), propiedades)
+            var mapa1 = new google.maps.Map(document.getElementById('mapa1'), propiedades)
             var marker = new google.maps.Marker({
                 position: coordenadas,
                 map: mapa1
             })
+
             marker.addListener('click', function () {
                 mapa1.setZoom(8)
                 mapa1.setCenter(marker.getPosition())
             })
 
-            var mapa2 = new google.maps.Map(document.getElementById("mapa2"), propiedades)
+            var mapa2 = new google.maps.Map(document.getElementById('mapa2'), propiedades)
             var marker2 = new google.maps.Marker({
                 position: coordenadas,
                 map: mapa2
             })
+
             mapa2.addListener('center_changed', function () {
                 window.setTimeout(function () {
                     mapa2.panTo(marker2.getPosition())
                 }, 3000)
             })
 
-            var mapa3 = new google.maps.Map(document.getElementById("mapa3"), propiedades)
+            var mapa3 = new google.maps.Map(document.getElementById('mapa3'), propiedades)
             mapa3.addListener('zoom_changed', function () {
-                var infoWindow = new google.maps.InfoWindow({
+                var infowindow = new google.maps.InfoWindow({
                     content: 'Cambia el zoom',
                     position: coordenadas
                 })
-                infoWindow.open(mapa3)
+                infowindow.open(mapa3)
                 nivelZoom = mapa3.getZoom()
-                infoWindow.setContent('Zoom: ' + nivelZoom)
+                infowindow.setContent('Zoom:' + nivelZoom)
             })
 
-            var mapa4 = new google.maps.Map(document.getElementById("mapa4"), propiedades)
+            var mapa4 = new google.maps.Map(document.getElementById('mapa4'), propiedades)
             mapa4.addListener('click', function (e) {
+                console.log(e.latLng)
                 estableceMarcador(e.latLng)
             })
             function estableceMarcador(latLng) {
@@ -132,7 +135,7 @@
             }
 
             var mapa5 = new google.maps.Map(document.getElementById('mapa5'), propiedades)
-            var infoWindow = new google.maps.InfoWindow({
+            var infowindow = new google.maps.InfoWindow({
                 content: 'Haz click para obtener las coordenadas',
                 position: coordenadas
             })
@@ -146,18 +149,15 @@
 
             var mapa6 = new google.maps.Map(document.getElementById('mapa6'), propiedades)
             google.maps.event.addDomListener(mapa6, 'click', function () {
-                window.alert('Se hizo click en el mapa')
+                window.alert(' Se hizo click en el mapa')
             })
-            var boton = document.getElementById('btnCentrar');
+
+            var boton = document.getElementById('btnCentrar')
             google.maps.event.addDomListener(boton, 'click', function () {
-                mapa6.panTo(coordenadas);
+                mapa6.panTo(coordenadas)
             })
-
         }
-
     </script>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
